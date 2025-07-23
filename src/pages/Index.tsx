@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import Icon from '@/components/ui/icon';
 
 const Index = () => {
@@ -23,11 +24,14 @@ const Index = () => {
       category: 'mouse',
       rating: 4.8,
       reviews: 156,
-      price: '12,990 ₽',
+      likes: 342,
       image: '/placeholder.svg',
       author: 'GamerPro',
       description: 'Невероятно легкая игровая мышь с топовым сенсором',
-      tags: ['Беспроводная', 'Игровая', 'RGB']
+      tags: ['Беспроводная', 'Игровая', 'RGB'],
+      videoId: 'dQw4w9WgXcQ',
+      fullReview: 'Полный обзор этой мыши показал её превосходство в киберспорте. Вес всего 63 грамма делает её идеальной для длительных игровых сессий. Сенсор HERO 25K обеспечивает точность на уровне профессиональных турниров.',
+      comments: 47
     },
     {
       id: 2,
@@ -35,11 +39,14 @@ const Index = () => {
       category: 'headphones',
       rating: 4.6,
       reviews: 89,
-      price: '18,500 ₽',
+      likes: 198,
       image: '/placeholder.svg',
       author: 'AudioExpert',
       description: 'Профессиональные игровые наушники с Hi-Res звуком',
-      tags: ['Hi-Res', 'Микрофон', 'USB-C']
+      tags: ['Hi-Res', 'Микрофон', 'USB-C'],
+      videoId: 'dQw4w9WgXcQ',
+      fullReview: 'Качество звука на высшем уровне благодаря Hi-Res драйверам. Микрофон с шумоподавлением идеален для стримов. Удобная посадка позволяет носить часами без дискомфорта.',
+      comments: 23
     },
     {
       id: 3,
@@ -47,11 +54,14 @@ const Index = () => {
       category: 'keyboard',
       rating: 4.7,
       reviews: 234,
-      price: '8,900 ₽',
+      likes: 456,
       image: '/placeholder.svg',
       author: 'KeyboardMaster',
       description: 'Механическая беспроводная клавиатура с низким профилем',
-      tags: ['Механическая', 'Bluetooth', 'Low Profile']
+      tags: ['Механическая', 'Bluetooth', 'Low Profile'],
+      videoId: 'dQw4w9WgXcQ',
+      fullReview: 'Отличное сочетание компактности и функциональности. Переключатели Gateron обеспечивают приятный тактильный отклик. Время автономной работы до 240 часов впечатляет.',
+      comments: 78
     },
     {
       id: 4,
@@ -59,11 +69,14 @@ const Index = () => {
       category: 'mouse',
       rating: 4.5,
       reviews: 312,
-      price: '6,990 ₽',
+      likes: 287,
       image: '/placeholder.svg',
       author: 'ProGamer2024',
       description: 'Эргономичная игровая мышь для правшей',
-      tags: ['Эргономичная', '30000 DPI', 'Chroma RGB']
+      tags: ['Эргономичная', '30000 DPI', 'Chroma RGB'],
+      videoId: 'dQw4w9WgXcQ',
+      fullReview: 'Классическая форма DeathAdder теперь стала ещё лучше. Новые оптические переключатели служат до 90 миллионов кликов. Эргономика проверена годами использования.',
+      comments: 91
     }
   ];
 
@@ -96,7 +109,7 @@ const Index = () => {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-4">
               <h1 className="text-2xl font-bold text-gaming-navy">
-                🎮 TechForum
+                🎮 TechReviews
               </h1>
               <div className="hidden md:flex items-center space-x-1">
                 <Badge variant="secondary" className="bg-gaming-cyan text-white">
@@ -127,19 +140,19 @@ const Index = () => {
         {/* Hero Section */}
         <div className="bg-gradient-to-r from-gaming-orange to-gaming-cyan rounded-xl p-8 mb-8 text-white animate-fade-in">
           <h2 className="text-4xl font-bold mb-4">
-            Лучший форум о компьютерной периферии
+            Форум TechReviews
           </h2>
           <p className="text-lg opacity-90 mb-6">
-            Обзоры, рейтинги и честные отзывы от реальных пользователей
+            Честные обзоры, видео-тесты и обсуждения периферии от сообщества
           </p>
           <div className="flex flex-wrap gap-4">
             <Button className="bg-white text-gaming-navy hover:bg-gray-100">
-              <Icon name="PlusCircle" size={16} className="mr-2" />
-              Добавить обзор
+              <Icon name="Video" size={16} className="mr-2" />
+              Создать обзор
             </Button>
             <Button variant="outline" className="border-white text-white hover:bg-white hover:text-gaming-navy">
-              <Icon name="TrendingUp" size={16} className="mr-2" />
-              Топ рейтинги
+              <Icon name="Users" size={16} className="mr-2" />
+              Присоединиться
             </Button>
           </div>
         </div>
@@ -192,8 +205,9 @@ const Index = () => {
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="text-lg font-bold text-gaming-orange">
-                      {product.price}
+                    <div className="flex items-center gap-2 text-gaming-orange">
+                      <Icon name="Heart" size={16} />
+                      <span className="font-semibold">{product.likes}</span>
                     </div>
                   </div>
                 </div>
@@ -230,17 +244,96 @@ const Index = () => {
                     </span>
                   </div>
                   
-                  <div className="flex space-x-2">
-                    <Button size="sm" variant="outline" className="h-8">
-                      <Icon name="Heart" size={14} />
-                    </Button>
-                    <Button size="sm" variant="outline" className="h-8">
-                      <Icon name="MessageCircle" size={14} />
-                    </Button>
-                    <Button size="sm" className="h-8 bg-gaming-orange hover:bg-gaming-orange/90">
-                      <Icon name="Eye" size={14} className="mr-1" />
-                      Смотреть
-                    </Button>
+                  <div className="flex items-center space-x-2">
+                    <div className="flex items-center text-sm text-gray-500">
+                      <Icon name="MessageCircle" size={14} className="mr-1" />
+                      {product.comments}
+                    </div>
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button size="sm" className="h-8 bg-gaming-orange hover:bg-gaming-orange/90">
+                          <Icon name="Play" size={14} className="mr-1" />
+                          Обзор
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+                        <DialogHeader>
+                          <DialogTitle className="text-gaming-navy">{product.title}</DialogTitle>
+                        </DialogHeader>
+                        <div className="space-y-6">
+                          {/* Video Section */}
+                          <div className="aspect-video bg-black rounded-lg overflow-hidden">
+                            <iframe
+                              className="w-full h-full"
+                              src={`https://www.youtube.com/embed/${product.videoId}`}
+                              title={product.title}
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                              allowFullScreen
+                            />
+                          </div>
+                          
+                          {/* Review Content */}
+                          <div className="space-y-4">
+                            <div className="flex items-center gap-4">
+                              <div className="flex items-center">
+                                {renderStars(product.rating)}
+                                <span className="ml-2 font-semibold text-gaming-navy">{product.rating}</span>
+                              </div>
+                              <div className="flex items-center gap-2 text-gaming-orange">
+                                <Icon name="Heart" size={16} />
+                                <span>{product.likes} лайков</span>
+                              </div>
+                              <div className="flex items-center gap-2 text-gray-600">
+                                <Icon name="MessageCircle" size={16} />
+                                <span>{product.comments} комментариев</span>
+                              </div>
+                            </div>
+                            
+                            <div className="flex flex-wrap gap-2">
+                              {product.tags.map((tag, tagIndex) => (
+                                <Badge key={tagIndex} variant="secondary">
+                                  {tag}
+                                </Badge>
+                              ))}
+                            </div>
+                            
+                            <div className="prose max-w-none">
+                              <h3 className="text-xl font-semibold text-gaming-navy mb-3">Полный обзор</h3>
+                              <p className="text-gray-700 leading-relaxed">
+                                {product.fullReview}
+                              </p>
+                            </div>
+                            
+                            <Separator />
+                            
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center space-x-3">
+                                <Avatar className="h-10 w-10">
+                                  <AvatarFallback className="bg-gaming-cyan text-white">
+                                    {product.author[0]}
+                                  </AvatarFallback>
+                                </Avatar>
+                                <div>
+                                  <div className="font-medium text-gaming-navy">{product.author}</div>
+                                  <div className="text-sm text-gray-500">Автор обзора</div>
+                                </div>
+                              </div>
+                              
+                              <div className="flex space-x-2">
+                                <Button variant="outline" size="sm">
+                                  <Icon name="Heart" size={16} className="mr-2" />
+                                  Лайк
+                                </Button>
+                                <Button variant="outline" size="sm">
+                                  <Icon name="Share" size={16} className="mr-2" />
+                                  Поделиться
+                                </Button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </DialogContent>
+                    </Dialog>
                   </div>
                 </div>
               </CardContent>
@@ -252,19 +345,19 @@ const Index = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           <Card className="text-center p-4">
             <div className="text-2xl font-bold text-gaming-orange mb-1">2,847</div>
-            <div className="text-sm text-gray-600">Активных пользователей</div>
+            <div className="text-sm text-gray-600">Участников</div>
           </Card>
           <Card className="text-center p-4">
             <div className="text-2xl font-bold text-gaming-cyan mb-1">1,234</div>
-            <div className="text-sm text-gray-600">Обзоров товаров</div>
+            <div className="text-sm text-gray-600">Видео обзоров</div>
           </Card>
           <Card className="text-center p-4">
             <div className="text-2xl font-bold text-gaming-orange mb-1">567</div>
-            <div className="text-sm text-gray-600">Брендов</div>
+            <div className="text-sm text-gray-600">Тем обсуждений</div>
           </Card>
           <Card className="text-center p-4">
             <div className="text-2xl font-bold text-gaming-cyan mb-1">8,945</div>
-            <div className="text-sm text-gray-600">Отзывов</div>
+            <div className="text-sm text-gray-600">Комментариев</div>
           </Card>
         </div>
 
@@ -279,9 +372,9 @@ const Index = () => {
           <CardContent>
             <div className="space-y-4">
               {[
-                { user: 'ProGamer2024', action: 'оставил отзыв на', item: 'Razer DeathAdder V3', time: '2 мин назад' },
-                { user: 'KeyboardMaster', action: 'добавил обзор', item: 'Keychron K3', time: '15 мин назад' },
-                { user: 'AudioExpert', action: 'обновил рейтинг', item: 'SteelSeries Arctis Pro', time: '1 час назад' }
+                { user: 'ProGamer2024', action: 'добавил видео обзор', item: 'Razer DeathAdder V3', time: '2 мин назад' },
+                { user: 'KeyboardMaster', action: 'создал тему', item: 'Keychron K3 vs Logitech MX Keys', time: '15 мин назад' },
+                { user: 'AudioExpert', action: 'ответил в теме', item: 'SteelSeries Arctis Pro', time: '1 час назад' }
               ].map((activity, index) => (
                 <div key={index} className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
                   <Avatar className="h-8 w-8">
