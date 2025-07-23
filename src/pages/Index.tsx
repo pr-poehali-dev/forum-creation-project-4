@@ -30,7 +30,16 @@ const Index = () => {
       description: 'Невероятно легкая игровая мышь с топовым сенсором',
       tags: ['Беспроводная', 'Игровая', 'RGB'],
       videoId: 'dQw4w9WgXcQ',
-      fullReview: 'Полный обзор этой мыши показал её превосходство в киберспорте. Вес всего 63 грамма делает её идеальной для длительных игровых сессий. Сенсор HERO 25K обеспечивает точность на уровне профессиональных турниров.',
+      fullDescription: 'Logitech G Pro X Superlight — это революция в мире игровых мышей. Разработанная совместно с профессиональными киберспортсменами, эта мышь воплощает в себе идеальный баланс между весом и функциональностью. Вес всего 63 грамма достигается благодаря использованию инновационных материалов и переосмыслению внутренней архитектуры устройства.',
+      specifications: {
+        'Сенсор': 'HERO 25K',
+        'DPI': 'До 25,600',
+        'Кнопки': '5 программируемых',
+        'Вес': '63 грамма',
+        'Подключение': 'LIGHTSPEED беспроводная',
+        'Время работы': 'До 70 часов',
+        'Размеры': '125 × 63.5 × 40 мм'
+      },
       comments: 47
     },
     {
@@ -45,7 +54,16 @@ const Index = () => {
       description: 'Профессиональные игровые наушники с Hi-Res звуком',
       tags: ['Hi-Res', 'Микрофон', 'USB-C'],
       videoId: 'dQw4w9WgXcQ',
-      fullReview: 'Качество звука на высшем уровне благодаря Hi-Res драйверам. Микрофон с шумоподавлением идеален для стримов. Удобная посадка позволяет носить часами без дискомфорта.',
+      fullDescription: 'SteelSeries Arctis Pro устанавливает новый стандарт в области игрового аудио. Оснащенные высококачественными драйверами Hi-Res Audio, эти наушники обеспечивают невероятно детализированное звучание. Микрофон ClearCast с технологией шумоподавления гарантирует кристально чистую передачу голоса.',
+      specifications: {
+        'Драйверы': '40мм неодимовые',
+        'Частотный диапазон': '10-40,000 Гц',
+        'Импеданс': '32 Ом',
+        'Микрофон': 'ClearCast с шумоподавлением',
+        'Подключение': 'USB-C / 3.5мм',
+        'Вес': '346 грамм',
+        'Кабель': '1.2м + 2м удлинитель'
+      },
       comments: 23
     },
     {
@@ -60,7 +78,16 @@ const Index = () => {
       description: 'Механическая беспроводная клавиатура с низким профилем',
       tags: ['Механическая', 'Bluetooth', 'Low Profile'],
       videoId: 'dQw4w9WgXcQ',
-      fullReview: 'Отличное сочетание компактности и функциональности. Переключатели Gateron обеспечивают приятный тактильный отклик. Время автономной работы до 240 часов впечатляет.',
+      fullDescription: 'Keychron K3 представляет собой идеальное сочетание компактности и функциональности механической клавиатуры. Тонкий профиль не идет в ущерб тактильным ощущениям благодаря специально разработанным переключателям Gateron Low Profile. Клавиатура поддерживает как проводное, так и беспроводное подключение.',
+      specifications: {
+        'Переключатели': 'Gateron Low Profile',
+        'Подключение': 'Bluetooth 5.1 / USB-C',
+        'Время работы': 'До 240 часов',
+        'Подсветка': 'RGB с 18 эффектами',
+        'Совместимость': 'Windows/macOS/Linux',
+        'Размер': '75%',
+        'Материал': 'Алюминиевая рамка'
+      },
       comments: 78
     },
     {
@@ -75,7 +102,16 @@ const Index = () => {
       description: 'Эргономичная игровая мышь для правшей',
       tags: ['Эргономичная', '30000 DPI', 'Chroma RGB'],
       videoId: 'dQw4w9WgXcQ',
-      fullReview: 'Классическая форма DeathAdder теперь стала ещё лучше. Новые оптические переключатели служат до 90 миллионов кликов. Эргономика проверена годами использования.',
+      fullDescription: 'Razer DeathAdder V3 — это эволюция легендарной эргономичной формы, которая завоевала сердца миллионов геймеров по всему миру. Новое поколение оснащено инновационными оптическими переключателями Razer, которые обеспечивают молниеносный отклик и невероятную долговечность до 90 миллионов кликов.',
+      specifications: {
+        'Сенсор': 'Focus Pro 30K',
+        'DPI': 'До 30,000',
+        'Переключатели': 'Razer Optical Mouse Switch Gen-3',
+        'Кнопки': '8 программируемых',
+        'Подсветка': 'Razer Chroma RGB',
+        'Вес': '59 грамм',
+        'Размеры': '127.5 × 61.7 × 42.7 мм'
+      },
       comments: 91
     }
   ];
@@ -251,6 +287,99 @@ const Index = () => {
                     </div>
                     <Dialog>
                       <DialogTrigger asChild>
+                        <Button size="sm" variant="outline" className="h-8">
+                          <Icon name="FileText" size={14} className="mr-1" />
+                          Статья
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+                        <DialogHeader>
+                          <DialogTitle className="text-gaming-navy">{product.title}</DialogTitle>
+                        </DialogHeader>
+                        <div className="space-y-6">
+                          {/* Product Image */}
+                          <div className="bg-gray-100 rounded-lg h-64 flex items-center justify-center">
+                            <Icon name="Image" size={64} className="text-gray-400" />
+                          </div>
+                          
+                          {/* Product Info */}
+                          <div className="space-y-4">
+                            <div className="flex items-center gap-4">
+                              <div className="flex items-center">
+                                {renderStars(product.rating)}
+                                <span className="ml-2 font-semibold text-gaming-navy">{product.rating}</span>
+                              </div>
+                              <div className="flex items-center gap-2 text-gaming-orange">
+                                <Icon name="Heart" size={16} />
+                                <span>{product.likes} лайков</span>
+                              </div>
+                              <div className="flex items-center gap-2 text-gray-600">
+                                <Icon name="MessageCircle" size={16} />
+                                <span>{product.comments} комментариев</span>
+                              </div>
+                            </div>
+                            
+                            <div className="flex flex-wrap gap-2">
+                              {product.tags.map((tag, tagIndex) => (
+                                <Badge key={tagIndex} variant="secondary">
+                                  {tag}
+                                </Badge>
+                              ))}
+                            </div>
+                            
+                            {/* Description */}
+                            <div>
+                              <h3 className="text-xl font-semibold text-gaming-navy mb-3">Описание</h3>
+                              <p className="text-gray-700 leading-relaxed">
+                                {product.fullDescription}
+                              </p>
+                            </div>
+                            
+                            {/* Specifications */}
+                            <div>
+                              <h3 className="text-xl font-semibold text-gaming-navy mb-3">Характеристики</h3>
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                {Object.entries(product.specifications).map(([key, value]) => (
+                                  <div key={key} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                                    <span className="font-medium text-gray-900">{key}:</span>
+                                    <span className="text-gray-700">{value}</span>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                            
+                            <Separator />
+                            
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center space-x-3">
+                                <Avatar className="h-10 w-10">
+                                  <AvatarFallback className="bg-gaming-cyan text-white">
+                                    {product.author[0]}
+                                  </AvatarFallback>
+                                </Avatar>
+                                <div>
+                                  <div className="font-medium text-gaming-navy">{product.author}</div>
+                                  <div className="text-sm text-gray-500">Автор статьи</div>
+                                </div>
+                              </div>
+                              
+                              <div className="flex space-x-2">
+                                <Button variant="outline" size="sm">
+                                  <Icon name="Heart" size={16} className="mr-2" />
+                                  Лайк
+                                </Button>
+                                <Button variant="outline" size="sm">
+                                  <Icon name="Share" size={16} className="mr-2" />
+                                  Поделиться
+                                </Button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </DialogContent>
+                    </Dialog>
+                    <Dialog>
+                      <DialogTrigger asChild>
                         <Button size="sm" className="h-8 bg-gaming-orange hover:bg-gaming-orange/90">
                           <Icon name="Play" size={14} className="mr-1" />
                           Обзор
@@ -298,9 +427,9 @@ const Index = () => {
                             </div>
                             
                             <div className="prose max-w-none">
-                              <h3 className="text-xl font-semibold text-gaming-navy mb-3">Полный обзор</h3>
+                              <h3 className="text-xl font-semibold text-gaming-navy mb-3">Видео обзор</h3>
                               <p className="text-gray-700 leading-relaxed">
-                                {product.fullReview}
+                                В этом подробном видео обзоре мы тестируем {product.title} в различных сценариях использования. Смотрите реальные тесты производительности, сравнения с конкурентами и честную оценку плюсов и минусов.
                               </p>
                             </div>
                             
